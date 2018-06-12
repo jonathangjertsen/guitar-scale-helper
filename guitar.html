@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guitar</title>
+    <script src="data.js"></script>
+    <script src="guitar.js"></script>
+<style>
+#fretboards-container {
+    font-family: Arial;
+}
+
+.fretboard {
+    display: grid;
+}
+
+.fret {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: rosybrown;
+    border: 2px solid blanchedalmond;
+    margin: 0;
+    height: 30px;
+    font-family: 'Helvetica', Arial;
+}
+
+.fret-label, .string-label {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.fret-label.dotted::after {
+    content: "."
+}
+
+.active-fret {
+    background-color: lightcoral;
+}
+</style>
+</head>
+<body>
+    <label for="root-select">Root</label>
+    <select id="root-select" onchange="fretboardUi.update()">
+        <option selected value="E">E</option>
+        <option value="F">F</option>
+        <option value="F#">F#</option>
+        <option value="G">G</option>
+        <option value="G#">G#</option>
+        <option value="A">A</option>
+        <option value="A#">A#</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="C#">C#</option>
+        <option value="D">D</option>
+        <option value="D#">D#</option>
+    </select>
+
+    <label for="scale-select">Scale</label>
+    <select id="scale-select" onchange="fretboardUi.update()">
+        <option value="major">Major / Ionian</option>
+        <option value="dorian">Dorian</option>
+        <option value="phrygian">Phrygian</option>
+        <option value="lydian">Lydian</option>
+        <option value="mixolydian">Mixolydian</option>
+        <option value="minor">Minor</option>
+        <option value="locrian">Locrian</option>
+        <option value="harmonic minor">Harmonic minor</option>
+        <option value="locrian #6">Locrian #6</option>
+        <option value="ionian #5">Ionian #5</option>
+        <option value="dorian #4">Dorian #4</option>
+        <option value="phrygian dominant">Phrygian dominant</option>
+        <option value="lydian #2">Lydian #2</option>
+        <option value="ultralocrian">Ultralocrian</option>
+        <option value="melodic minor">Melodic minor</option>
+        <option value="phrygian #6">Phrygian #6</option>
+        <option value="lydian augmented">Lydian augmented</option>
+        <option value="lydian dominant">Lydian dominant</option>
+        <option value="mixolydian b6">Sltered dominant</option>
+        <option value="locrian n2">Locrian n2</option>
+        <option value="altered">Altered</option>
+        <option value="minor pentatonic">Minor pentatonic</option>
+        <option value="major pentatonic">Major pentatonic</option>
+        <option value="blues">Blues</option>
+        <option value="dim">Diminished triad</option>
+        <option value="m">Minor triad</option>
+        <option value="M">Major triad</option>
+        <option value="dim7">Diminished 7</option>
+        <option value="m7b5">Minor 7 flat 5</option>
+        <option value="m7">Minor 7</option>
+        <option value="m9">Minor 9</option>
+        <option value="7">Dominant 7</option>
+        <option value="9">Dominant 9</option>
+        <option value="maj7">Major 7</option>
+        <option value="maj9">Major 9</option>
+        <option value="aug">Augmented triad</option>
+        <option value="sus2">Suspended 2nd</option>
+        <option value="sus4">Suspended 4th</option>
+    </select>
+
+    <div id="fretboards-container"></div>
+</body>
+<script>
+    const fretboard = new Fretboard(['E', 'B', 'G', 'D', 'A', 'E'], 22);
+    const fretboardUi = new FretboardUi(fretboard, 'fretboards-container');
+    fretboardUi.update();
+</script>
+</html>
